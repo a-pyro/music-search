@@ -6,9 +6,9 @@ import { ISearch } from '../types/deezer';
 
 const Home = () => {
   const [tracks, setTracks] = useState<ISearch[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
-  const fetchApi: Function = async (query: string) => {
+  const fetchApi = async (query: string) => {
     try {
       setLoading(true);
       const resp = await fetch(
@@ -28,11 +28,8 @@ const Home = () => {
     <>
       <Jumbotron fluid>
         <Container>
-          <h1>Fluid jumbotron</h1>
-          <p>
-            This is a modified jumbotron that occupies the entire horizontal
-            space of its parent.
-          </p>
+          <h1>Search Music</h1>
+          <p>This is a very ugly app</p>
           <Search fetchApi={fetchApi} />
         </Container>
       </Jumbotron>

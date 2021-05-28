@@ -3,7 +3,7 @@ import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 interface SearchProps {
-  fetchApi: Function;
+  fetchApi: (query: string) => void;
 }
 
 const Search = ({ fetchApi }: SearchProps) => {

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { ITrack } from '../types/deezer';
-
+import ReactAudioPlayer from 'react-audio-player';
 type MusicParams = {
   id: string;
 };
 const Details = () => {
+  const [track, setTrack] = useState<ITrack | null>(null);
   const { id } = useParams<MusicParams>();
-  const [track, setTrack] = useState<ITrack>();
 
   useEffect(() => {
     (async () => {
@@ -27,9 +27,29 @@ const Details = () => {
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <Image rounded alt='albumCover' src={track?.album.cover_xl} />
+      <Row className='mt-5'>
+        <Col className='text-center' md={8}>
+          <Image
+            rounded
+            alt='albumCover'
+            style={{ maxWidth: '500px' }}
+            src={track?.album.cover_xl}
+          />
+        </Col>
+        <Col md={4}>
+          <ListGroup className='rounded'>
+            <ListGroup.Item>Title: {track?.title}</ListGroup.Item>
+            <ListGroup.Item>
+              Duration: {track?.duration && Math.round(track.duration / 60)} min
+            </ListGroup.Item>
+            <ListGroup.Item>Artist: {track?.artist.name}</ListGroup.Item>
+          </ListGroup>
+          <ReactAudioPlayer
+            className='mt-3'
+            src={track?.preview}
+            autoPlay
+            controls
+          />
         </Col>
       </Row>
     </Container>
