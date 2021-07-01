@@ -19,7 +19,7 @@ const Search = ({ fetchApi }: SearchProps) => {
     myRef.current?.focus();
   };
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='light' expand='lg' className='rounded-pill px-3'>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse
         id='basic-navbar-nav'
@@ -38,9 +38,13 @@ const Search = ({ fetchApi }: SearchProps) => {
             onChange={(e) => setsearch(e.currentTarget.value)}
             type='text'
             placeholder='Search'
-            className='mr-sm-2'
+            className='mr-sm-2 rounded-pill'
           />
-          <Button variant='outline-success' type='submit'>
+          <Button
+            variant='outline-success'
+            className='rounded-pill ms-3'
+            type='submit'
+          >
             Search
           </Button>
         </Form>

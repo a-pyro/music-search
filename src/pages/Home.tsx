@@ -28,7 +28,7 @@ const Home = () => {
     <>
       <Jumbotron fluid>
         <Container>
-          <h1>Search Music</h1>
+          <h1>Search Music - Deezer Api</h1>
           <p>This is a very ugly app</p>
           <Search fetchApi={fetchApi} />
         </Container>
