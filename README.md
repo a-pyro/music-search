@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+// ⚠️ FIRST ADD REACT_APP_API_URL = https://striveschool-api.herokuapp.com/api/deezer in .env
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
