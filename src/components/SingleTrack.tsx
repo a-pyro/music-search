@@ -1,13 +1,14 @@
-import { ISearch } from '../types/deezer';
-import { Image, ListGroup, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router';
+import { Search } from '../types/deezer'
+import { Image, ListGroup, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router'
+import AudioPlayer from './AudioPlayer'
 
 interface TrackProps {
-  track: ISearch;
+  track: Search
 }
 
-const Track = ({ track }: TrackProps) => {
-  const history = useHistory();
+const SingleTrack = ({ track }: TrackProps) => {
+  const history = useHistory()
 
   return (
     <ListGroup.Item className='d-flex align-items-center'>
@@ -21,7 +22,7 @@ const Track = ({ track }: TrackProps) => {
       <span className='mx-2'>{track.artist.name} </span> <span>🎵</span>
       <span className='mx-2'>{track.title}</span>
       <div className='ms-auto'>
-        <span>👉🏻</span>
+        <AudioPlayer audioSource={track.preview} />
         <Button
           onClick={() => history.push(`/details/${track.id}`)}
           variant='info'
@@ -32,7 +33,7 @@ const Track = ({ track }: TrackProps) => {
         <span>🕺</span>
       </div>
     </ListGroup.Item>
-  );
-};
+  )
+}
 
-export default Track;
+export default SingleTrack

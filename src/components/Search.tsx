@@ -1,23 +1,23 @@
-import { useState, useRef } from 'react';
-import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useState, useRef } from 'react'
+import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 interface SearchProps {
-  fetchApi: (query: string) => void;
+  fetchApi: (query: string) => void
 }
 
-const Search = ({ fetchApi }: SearchProps) => {
-  const [search, setsearch] = useState<string>('');
-  const history = useHistory();
+const Search = ({ fetchApi: onSubmit }: SearchProps) => {
+  const [search, setsearch] = useState<string>('')
+  const history = useHistory()
 
-  const myRef = useRef<HTMLInputElement>(null);
+  const myRef = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    fetchApi(search);
-    setsearch('');
-    myRef.current?.focus();
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onSubmit(search)
+    setsearch('')
+    myRef.current?.focus()
+  }
   return (
     <Navbar bg='light' expand='lg' className='rounded-pill px-3'>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -50,7 +50,7 @@ const Search = ({ fetchApi }: SearchProps) => {
         </Form>
       </Navbar.Collapse>
     </Navbar>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

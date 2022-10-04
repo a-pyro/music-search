@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
-import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap';
-import { useParams } from 'react-router';
-import { ITrack } from '../types/deezer';
-import ReactAudioPlayer from 'react-audio-player';
+import { useEffect, useState } from 'react'
+import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap'
+import { useParams } from 'react-router'
+import { Track } from '../types/deezer'
+import ReactAudioPlayer from 'react-audio-player'
 type MusicParams = {
-  id: string;
-};
+  id: string
+}
 const Details = () => {
-  const [track, setTrack] = useState<ITrack | null>(null);
-  const { id } = useParams<MusicParams>();
+  const [track, setTrack] = useState<Track | null>(null)
+  const { id } = useParams<MusicParams>()
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
-        const resp = await fetch(
-          `${process.env.REACT_APP_API_URL}/track/${id}`
-        );
-        const data = await resp.json();
-        console.log(data);
-        setTrack(data);
+        const resp = await fetch(`${process.env.REACT_APP_API_URL}/track/${id}`)
+        const data = await resp.json()
+        console.log(data)
+        setTrack(data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    })();
-  }, [id]);
+    })()
+  }, [id])
+
+  if (!track) return null
 
   return (
     <Container>
@@ -38,7 +38,7 @@ const Details = () => {
         </Col>
         <Col md={4}>
           <ListGroup className='rounded'>
-            <ListGroup.Item>Title: {track?.title}</ListGroup.Item>
+            <ListGroup.Item>Title: {track.title}</ListGroup.Item>
             <ListGroup.Item>
               Duration: {track?.duration && Math.round(track.duration / 60)} min
             </ListGroup.Item>
@@ -53,7 +53,7 @@ const Details = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Details;
+export default Details

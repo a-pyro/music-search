@@ -1,19 +1,18 @@
-import { ListGroup } from 'react-bootstrap';
-import { ISearch } from '../types/deezer';
-import Track from './Track';
+import { ListGroup } from 'react-bootstrap'
+import type { Track } from '../types/deezer'
+import SingleTrack from './SingleTrack'
 interface TrackListProps {
-  tracks: ISearch[];
+  tracks: Track[]
 }
 
 const TackList = ({ tracks }: TrackListProps) => {
-  console.log(tracks);
   return (
     <ListGroup>
-      {tracks.map((track: ISearch) => (
-        <Track key={track.id} track={track} />
+      {tracks?.map((track: Track) => (
+        <SingleTrack key={track.id} track={track} />
       ))}
     </ListGroup>
-  );
-};
+  )
+}
 
-export default TackList;
+export default TackList

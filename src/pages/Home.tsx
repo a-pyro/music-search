@@ -1,28 +1,27 @@
-import { useState } from 'react';
-import { Container, Jumbotron, Spinner } from 'react-bootstrap';
-import Search from '../components/Search';
-import TrackList from '../components/TackList';
-import { ISearch } from '../types/deezer';
+import { useState } from 'react'
+import { Container, Jumbotron, Spinner } from 'react-bootstrap'
+import { apiUrl, options } from '../api'
+import Search from '../components/Search'
+import TrackList from '../components/TackList'
+import { Track } from '../types/deezer'
 
 const Home = () => {
-  const [tracks, setTracks] = useState<ISearch[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [tracks, setTracks] = useState<Track[]>([])
+  const [loading, setLoading] = useState(false)
 
   const fetchApi = async (query: string) => {
     try {
-      setLoading(true);
-      const resp = await fetch(
-        `${process.env.REACT_APP_API_URL}/search?q=${query}`
-      );
-      const { data } = await resp.json();
-      console.log(data);
-      setTracks(data);
-      setLoading(false);
+      setLoading(true)
+      const resp = await fetch(`${apiUrl}/search?q=${query}`, options)
+      const { data } = await resp.json()
+      console.log(data)
+      setTracks(data)
+      setLoading(false)
     } catch (error) {
-      console.log(error);
-      setLoading(false);
+      console.log(error)
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <>
@@ -39,7 +38,7 @@ const Home = () => {
         )}
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
