@@ -29,7 +29,7 @@ const Home = () => {
         <Container>
           <h1>Search Music - Deezer Api</h1>
           <p>This is a very ugly app</p>
-          <Search fetchApi={fetchApi} />
+          <Search onSubmit={fetchApi} />
         </Container>
       </Jumbotron>
       <Container>

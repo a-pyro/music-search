@@ -1,12 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, FunctionComponent } from 'react'
 import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 interface SearchProps {
-  fetchApi: (query: string) => void
+  onSubmit: (query: string) => void
 }
 
-const Search = ({ fetchApi: onSubmit }: SearchProps) => {
+const Search: FunctionComponent<SearchProps> = ({ onSubmit, children }) => {
   const [search, setsearch] = useState<string>('')
   const history = useHistory()
 

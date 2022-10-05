@@ -13,7 +13,7 @@ export interface Search {
   preview: string
   md5_image: string
   artist: Artist
-  album: IAlbum
+  album: Album
   type: string
 }
 export interface Track {
@@ -40,7 +40,7 @@ export interface Track {
   contributors: IContributor[]
   md5_image: string
   artist: Artist
-  album: IAlbum
+  album: Album
   type: string
 }
 
@@ -59,7 +59,7 @@ export interface Artist {
   type: string
 }
 
-export interface IAlbum {
+export interface Album {
   id: number
   title: string
   link: string
