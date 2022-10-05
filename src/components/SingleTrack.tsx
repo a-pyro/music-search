@@ -1,15 +1,14 @@
 import { Search } from '../types/deezer'
 import { Image, ListGroup, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router'
 import AudioPlayer from './AudioPlayer'
+import { useRoutePush } from 'router'
 
 interface TrackProps {
   track: Search
 }
 
 const SingleTrack = ({ track }: TrackProps) => {
-  const history = useHistory()
-
+  const push = useRoutePush()
   return (
     <ListGroup.Item className='d-flex align-items-center'>
       <Image
@@ -20,17 +19,17 @@ const SingleTrack = ({ track }: TrackProps) => {
       />{' '}
       <span className='mx-2'>👨🏻‍🎤</span>
       <span className='mx-2'>{track.artist.name} </span> <span>🎵</span>
-      <span className='mx-2'>{track.title}</span>
-      <div className='ms-auto'>
+      <span className='mx-2 text-truncate'>{track.title}</span>
+      <div className='ms-auto d-flex align-items-center'>
         <AudioPlayer audioSource={track.preview} />
         <Button
-          onClick={() => history.push(`/details/${track.id}`)}
+          onClick={() => push(`/details/${track.id}`)}
           variant='info'
-          className='mx-2 badge rounded-pill'
+          className='mx-2 badge rounded-pill align-self-stretch'
         >
           Details
         </Button>
-        <span>🕺</span>
+        <div>🕺</div>
       </div>
     </ListGroup.Item>
   )

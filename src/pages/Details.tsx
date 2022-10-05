@@ -3,17 +3,22 @@ import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap'
 import { useParams } from 'react-router'
 import { Track } from '../types/deezer'
 import ReactAudioPlayer from 'react-audio-player'
+import { options } from '../api'
+import { secondsToMinutes } from 'date-fns'
 type MusicParams = {
   id: string
 }
 const Details = () => {
-  const [track, setTrack] = useState<Track | null>(null)
+  const [track, setTrack] = useState<Track>()
   const { id } = useParams<MusicParams>()
 
   useEffect(() => {
     ;(async () => {
       try {
-        const resp = await fetch(`${process.env.REACT_APP_API_URL}/track/${id}`)
+        const resp = await fetch(
+          `${process.env.REACT_APP_API_URL}/track/${id}`,
+          options
+        )
         const data = await resp.json()
         console.log(data)
         setTrack(data)
@@ -40,16 +45,11 @@ const Details = () => {
           <ListGroup className='rounded'>
             <ListGroup.Item>Title: {track.title}</ListGroup.Item>
             <ListGroup.Item>
-              Duration: {track?.duration && Math.round(track.duration / 60)} min
+              Duration: {secondsToMinutes(track.duration)} min
             </ListGroup.Item>
-            <ListGroup.Item>Artist: {track?.artist.name}</ListGroup.Item>
+            <ListGroup.Item>Artist: {track.artist.name}</ListGroup.Item>
           </ListGroup>
-          <ReactAudioPlayer
-            className='mt-3'
-            src={track?.preview}
-            autoPlay
-            controls
-          />
+          <ReactAudioPlayer className='mt-3' src={track.preview} controls />
         </Col>
       </Row>
     </Container>
