@@ -1,16 +1,18 @@
 import PanelWrapper from 'components/PanelWrapper'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Details from './pages/Details'
-import Home from './pages/Home'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Details from 'views/Details'
+import Home from 'views/Home'
 
 function App() {
   return (
     <Router>
-      <Route path='/' exact render={() => <PanelWrapper child={<Home />} />} />
-      <Route
-        path='/details/:id'
-        render={() => <PanelWrapper child={<Details />} />}
-      />
+      <Routes>
+        <Route path='/' element={<PanelWrapper child={<Home />} />} />
+        <Route
+          path='/details/:id'
+          element={<PanelWrapper child={<Details />} />}
+        />
+      </Routes>
     </Router>
   )
 }

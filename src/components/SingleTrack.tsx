@@ -1,14 +1,14 @@
 import { Search } from '../types/deezer'
 import { Image, ListGroup, Button } from 'react-bootstrap'
-import AudioPlayer from './AudioPlayer'
-import { useRoutePush } from 'router'
+import AudioPlayer from 'components/AudioPlayer'
+import { useRouteNavigation } from 'router'
 
 interface TrackProps {
   track: Search
 }
 
 const SingleTrack = ({ track }: TrackProps) => {
-  const push = useRoutePush()
+  const goToRoute = useRouteNavigation()
   return (
     <ListGroup.Item className='d-flex align-items-center'>
       <Image
@@ -23,7 +23,7 @@ const SingleTrack = ({ track }: TrackProps) => {
       <div className='ms-auto d-flex align-items-center'>
         <AudioPlayer audioSource={track.preview} />
         <Button
-          onClick={() => push(`/details/${track.id}`)}
+          onClick={() => goToRoute(`/details/${track.id}`)}
           variant='info'
           className='mx-2 badge rounded-pill align-self-stretch'
         >

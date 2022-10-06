@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import Title from 'components/Title'
+import { useState, useCallback } from 'react'
 import { Container, Jumbotron, Spinner } from 'react-bootstrap'
 import { apiUrl, options } from '../api'
 import Search from '../components/Search'
@@ -9,7 +10,7 @@ const Home = () => {
   const [tracks, setTracks] = useState<Track[]>([])
   const [loading, setLoading] = useState(false)
 
-  const fetchApi = async (query: string) => {
+  const fetchTrack = useCallback(async (query: string) => {
     try {
       setLoading(true)
       const resp = await fetch(`${apiUrl}/search?q=${query}`, options)
@@ -21,15 +22,15 @@ const Home = () => {
       console.log(error)
       setLoading(false)
     }
-  }
+  }, [])
 
   return (
     <>
       <Jumbotron fluid>
         <Container>
-          <h1>Search Music - Deezer Api</h1>
+          <Title content='Search Music' />
           <p>This is a very ugly app</p>
-          <Search onSubmit={fetchApi} />
+          <Search onSubmit={fetchTrack} />
         </Container>
       </Jumbotron>
       <Container>

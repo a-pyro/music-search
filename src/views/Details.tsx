@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap'
 import { useParams } from 'react-router'
 import { Track } from '../types/deezer'
-import ReactAudioPlayer from 'react-audio-player'
 import { options } from '../api'
 import { secondsToMinutes } from 'date-fns'
+import AudioPlayer from 'components/AudioPlayer'
+
 type MusicParams = {
   id: string
 }
@@ -49,7 +50,7 @@ const Details = () => {
             </ListGroup.Item>
             <ListGroup.Item>Artist: {track.artist.name}</ListGroup.Item>
           </ListGroup>
-          <ReactAudioPlayer className='mt-3' src={track.preview} controls />
+          <AudioPlayer classNames='mt-3' audioSource={track.preview} />
         </Col>
       </Row>
     </Container>
