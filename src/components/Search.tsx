@@ -9,6 +9,7 @@ const Search: FunctionComponent<SearchProps> = ({ onSubmit }) => {
   const inputField = useRef<HTMLInputElement>(null)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const textInput = inputField.current?.value
     if (!textInput) return
     e.preventDefault()

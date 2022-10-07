@@ -1,3 +1,5 @@
+// just for fun, probably better done with CSS
+
 import useIsInViewport from 'hooks/useIsInViewport'
 import { useRef, useState, useEffect } from 'react'
 
