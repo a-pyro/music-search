@@ -17,3 +17,7 @@
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}

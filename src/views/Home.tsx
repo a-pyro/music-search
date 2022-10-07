@@ -1,6 +1,6 @@
 import Title from 'components/Title'
 import { useState, useCallback } from 'react'
-import { Container, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { apiUrl, options } from '../api'
 import Search from '../components/Search'
 import TrackList from '../components/TackList'
@@ -26,16 +26,12 @@ const Home = () => {
 
   return (
     <>
-      <Container>
-        <Title content='Search Music' />
-        <p>This is a very ugly app</p>
-        <Search onSubmit={fetchTrack} />
-      </Container>
-      <Container>
-        {(loading && <Spinner animation='grow' />) || (
-          <TrackList tracks={tracks} />
-        )}
-      </Container>
+      <Title content='Search Music' />
+      <Search onSubmit={fetchTrack} />
+
+      {(loading && <Spinner animation='grow' />) || (
+        <TrackList tracks={tracks} />
+      )}
     </>
   )
 }

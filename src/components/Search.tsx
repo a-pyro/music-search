@@ -1,5 +1,5 @@
 import { useRef, FunctionComponent } from 'react'
-import { Navbar, Form, Button, FormControl } from 'react-bootstrap'
+import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
 interface SearchProps {
   onSubmit: (query: string) => void

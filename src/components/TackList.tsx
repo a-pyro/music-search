@@ -1,4 +1,3 @@
-import { ListGroup } from 'react-bootstrap'
 import type { Track } from '../types/deezer'
 import SingleTrack from './SingleTrack'
 interface TrackListProps {
@@ -7,11 +6,11 @@ interface TrackListProps {
 
 const TackList = ({ tracks }: TrackListProps) => {
   return (
-    <ListGroup>
+    <div>
       {tracks?.map((track: Track) => (
         <SingleTrack key={track.id} track={track} />
       ))}
-    </ListGroup>
+    </div>
   )
 }
 
