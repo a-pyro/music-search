@@ -1,42 +1,22 @@
 import { useRef, FunctionComponent } from 'react'
-import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
-
+import { Input } from '@chakra-ui/react'
 interface SearchProps {
-  onSubmit: (query: string) => void
+  onChange: (query: string) => void
 }
 
-const Search: FunctionComponent<SearchProps> = ({ onSubmit }) => {
+const Search: FunctionComponent<SearchProps> = ({ onChange }) => {
   const inputField = useRef<HTMLInputElement>(null)
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleChange = () => {
     const textInput = inputField.current?.value
     if (!textInput) return
-    e.preventDefault()
-    onSubmit(textInput)
+    onChange(textInput)
   }
   return (
-    <Navbar bg='light' className='rounded-pill px-3'>
-      <Form
-        onSubmit={handleSubmit}
-        className='d-flex justify-content-between w-100'
-      >
-        <FormControl
-          ref={inputField}
-          autoFocus
-          type='text'
-          placeholder='type anything'
-          className='mr-sm-2 rounded-pill'
-        />
-        <Button
-          variant='outline-secondary'
-          className='rounded-pill ms-3 d-block'
-          type='submit'
-        >
-          🚀
-        </Button>
-      </Form>
-    </Navbar>
+    <Input
+      placeholder='Type to search'
+      ref={inputField}
+      onChange={handleChange}
+    />
   )
 }
 

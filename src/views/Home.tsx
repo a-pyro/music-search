@@ -1,6 +1,6 @@
 import Title from 'components/Title'
 import { useState, useCallback } from 'react'
-import { Spinner } from 'react-bootstrap'
+import { Spinner } from '@chakra-ui/react'
 import { apiUrl, options } from '../api'
 import Search from '../components/Search'
 import TrackList from '../components/TackList'
@@ -27,11 +27,9 @@ const Home = () => {
   return (
     <>
       <Title content='Search Music' />
-      <Search onSubmit={fetchTrack} />
+      <Search onChange={fetchTrack} />
 
-      {(loading && <Spinner animation='grow' />) || (
-        <TrackList tracks={tracks} />
-      )}
+      {(loading && <Spinner />) || <TrackList tracks={tracks} />}
     </>
   )
 }

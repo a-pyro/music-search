@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Image, Row, ListGroup } from 'react-bootstrap'
+import { Box, Image, Text, VStack } from '@chakra-ui/react'
 import { useParams } from 'react-router'
 import { Track } from '../types/deezer'
 import { options } from '../api'
@@ -32,28 +32,22 @@ const Details = () => {
   if (!track) return null
 
   return (
-    <Container>
-      <Row className='mt-5'>
-        <Col className='text-center' md={8}>
-          <Image
-            rounded
-            alt='albumCover'
-            style={{ maxWidth: '500px' }}
-            src={track?.album.cover_xl}
-          />
-        </Col>
-        <Col md={4}>
-          <ListGroup className='rounded'>
-            <ListGroup.Item>Title: {track.title}</ListGroup.Item>
-            <ListGroup.Item>
-              Duration: {secondsToMinutes(track.duration)} min
-            </ListGroup.Item>
-            <ListGroup.Item>Artist: {track.artist.name}</ListGroup.Item>
-          </ListGroup>
+    <VStack w='100%'>
+      <Box className='mt-5'>
+        <Image
+          borderRadius={'md'}
+          alt='albumCover'
+          style={{ maxWidth: '100%' }}
+          src={track?.album.cover_xl}
+        />
+        <VStack>
+          <Text>Title: {track.title}</Text>
+          <Text>Duration: {secondsToMinutes(track.duration)} min</Text>
+          <Text>Artist: {track.artist.name}</Text>
           <AudioPlayer classNames='mt-3' audioSource={track.preview} />
-        </Col>
-      </Row>
-    </Container>
+        </VStack>
+      </Box>
+    </VStack>
   )
 }
 

@@ -1,30 +1,28 @@
-import { useColorMode } from '@chakra-ui/react'
+import { Box, Flex, useColorMode } from '@chakra-ui/react'
+import { useState } from 'react'
 
 const ColorModeToggler = () => {
   const { colorMode, toggleColorMode } = useColorMode()
+  const [isMouseOver, setIsMouseOver] = useState(false)
 
   const isDark = colorMode === 'dark'
 
   return (
-    <div
+    <Flex
+      w='30px'
+      pos='absolute'
+      direction={'column'}
       style={{
         cursor: 'pointer',
         userSelect: 'none',
-        display: 'inline-block',
-        width: 50,
       }}
-      className={`position-absolute mt-3 d-inline-block rounded-pill bg-${
-        isDark ? 'primary' : 'secondary'
-      }`}
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
       onClick={toggleColorMode}
     >
-      <div
-        className='position-relative'
-        style={{ top: 0, left: isDark ? 25 : 0 }}
-      >
-        {isDark ? '🌞 ' : '🌚'}
-      </div>
-    </div>
+      {isMouseOver && <Box>{isDark ? '🌞 ' : '🌚'}</Box>}
+      <Box textAlign={'left'}>💡</Box>
+    </Flex>
   )
 }
 

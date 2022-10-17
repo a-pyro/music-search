@@ -1,7 +1,6 @@
 import { Search } from '../types/deezer'
-import { Image, Button } from 'react-bootstrap'
-import AudioPlayer from 'components/AudioPlayer'
 import { useRouteNavigation } from 'router'
+import { Flex, Image, Button, Box, Text, Spacer } from '@chakra-ui/react'
 
 interface TrackProps {
   track: Search
@@ -12,28 +11,31 @@ const SingleTrack = ({ track }: TrackProps) => {
 
   return (
     <>
-      <div className='d-flex align-items-center my-3'>
-        <Image
-          roundedCircle
-          alt='artistPic'
-          style={{ height: '40px', width: '40px' }}
-          src={track.artist.picture_medium}
-        />{' '}
-        <span className='mx-2'>👨🏻‍🎤</span>
-        <span className='mx-2'>{track.artist.name} </span> <span>🎵</span>
-        <span className='mx-2 text-truncate'>{track.title}</span>
-        <div className='ms-auto d-flex align-items-center'>
-          <AudioPlayer audioSource={track.preview} />
+      <Flex marginY={4} alignItems='center'>
+        <Box textAlign={'center'}>
+          <Image
+            borderRadius='full'
+            loading='lazy'
+            alt='artistPic'
+            boxSize='200px'
+            src={track.artist.picture_medium}
+            mb={2}
+          />
+          <Text>{track.artist.name}</Text>
+        </Box>
+
+        <Spacer />
+        <Text>{track.title}</Text>
+        <Box>
           <Button
+            variant='ghost'
+            colorScheme='teal'
             onClick={() => goToRoute(`/details/${track.id}`)}
-            variant='info'
-            className='mx-2 badge rounded-pill align-self-stretch'
           >
             Details
           </Button>
-          <div>🕺</div>
-        </div>
-      </div>
+        </Box>
+      </Flex>
       <hr />
     </>
   )
