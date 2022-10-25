@@ -4,13 +4,13 @@ import { useState } from 'react'
 const ColorModeToggler = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [isMouseOver, setIsMouseOver] = useState(false)
-
   const isDark = colorMode === 'dark'
+
+  const modeEmoji = isDark ? '🌞' : '🌚'
 
   return (
     <Flex
       w='30px'
-      pos='absolute'
       direction={'column'}
       style={{
         cursor: 'pointer',
@@ -20,7 +20,7 @@ const ColorModeToggler = () => {
       onMouseLeave={() => setIsMouseOver(false)}
       onClick={toggleColorMode}
     >
-      {isMouseOver && <Box>{isDark ? '🌞 ' : '🌚'}</Box>}
+      {isMouseOver && <Box>{modeEmoji}</Box>}
       <Box textAlign={'left'}>💡</Box>
     </Flex>
   )

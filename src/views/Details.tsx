@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Box, Image, Text, VStack } from '@chakra-ui/react'
 import { useParams } from 'react-router'
 import { Track } from '../types/deezer'
-import { options } from '../api'
+import { apiUrl, options } from '../api'
 import { secondsToMinutes } from 'date-fns'
 import AudioPlayer from 'components/AudioPlayer'
 
@@ -16,10 +16,7 @@ const Details = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const resp = await fetch(
-          `${process.env.REACT_APP_API_URL}/track/${id}`,
-          options
-        )
+        const resp = await fetch(`${apiUrl}/track/${id}`, options)
         const data = await resp.json()
         console.log(data)
         setTrack(data)
@@ -33,7 +30,7 @@ const Details = () => {
 
   return (
     <VStack w='100%'>
-      <Box className='mt-5'>
+      <Box>
         <Image
           borderRadius={'md'}
           alt='albumCover'
